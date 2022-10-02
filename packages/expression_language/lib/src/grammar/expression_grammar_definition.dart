@@ -23,13 +23,17 @@ class ExpressionGrammarDefinition extends GrammarDefinition {
   Parser singleLineString() =>
       char('"') & ref(stringContent).star() & char('"');
   Parser stringContent() => pattern('^"');
-  Parser literal() => ref(
+  Parser singleLineStringSingleQuote() =>
+      char('\'') & ref0(stringContentSingleQuote).star() & char('\'');
+  Parser stringContentSingleQuote() => pattern('^\'');
+  Parser literal() => ref1(
       token,
-      ref(decimalNumber) |
-          ref(integerNumber) |
-          ref(TRUE) |
-          ref(FALSE) |
-          ref(singleLineString));
+      ref0(decimalNumber) |
+          ref0(integerNumber) |
+          ref0(TRUE) |
+          ref0(FALSE) |
+          ref0(singleLineString) |
+          ref0(singleLineStringSingleQuote));
   Parser identifier() =>
       ref(letterOrSpecialChar) & (ref(letterOrSpecialChar) | ref(DIGIT)).star();
 

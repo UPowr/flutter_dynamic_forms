@@ -367,6 +367,12 @@ class ExpressionGrammarParser extends ExpressionGrammarDefinition {
       .map((c) => ConstantExpression<String>(c.substring(1, c.length - 1)));
 
   @override
+  Parser singleLineStringSingleQuote() =>
+      super.singleLineStringSingleQuote().flatten().map((c) {
+        return ConstantExpression<String>(c.substring(1, c.length - 1));
+      });
+
+  @override
   Parser functionParameters() => super.functionParameters().map((c) {
         var result = <Expression>[];
         for (var i = 0; i < c[0].length; i++) {
