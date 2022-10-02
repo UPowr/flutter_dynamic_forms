@@ -9,6 +9,7 @@ abstract class FormElement implements Element {
   static const String defaultPropertyName = 'value';
   static const String parentPropertyName = 'parent';
   static const String isVisiblePropertyName = 'isVisible';
+  static const String validationsPropertyName = 'validations';
 
   @override
   String? id;
@@ -25,6 +26,14 @@ abstract class FormElement implements Element {
       registerProperty(isVisiblePropertyName, value);
   bool get isVisible => isVisibleProperty.value;
   Stream<bool> get isVisibleChanged => isVisibleProperty.valueChanged;
+
+  Property<List<Validation>> get validationsProperty =>
+      properties[validationsPropertyName] as Property<List<Validation>>;
+  set validationsProperty(Property<List<Validation>> value) =>
+      registerProperty(validationsPropertyName, value);
+  List<Validation> get validations => validationsProperty.value;
+  Stream<List<Validation>> get validationsChanged =>
+      validationsProperty.valueChanged;
 
   @protected
   Map<String, Property> properties = {};

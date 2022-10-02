@@ -1,3 +1,5 @@
+import 'package:dynamic_forms/dynamic_forms.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_dynamic_forms/flutter_dynamic_forms.dart';
 import 'package:rxdart/rxdart.dart';
@@ -10,6 +12,11 @@ class RadioButtonGroupRenderer extends FormElementRenderer<RadioButtonGroup> {
       BuildContext context,
       FormElementEventDispatcherFunction dispatcher,
       FormElementRendererFunction renderer) {
+    var errorText = element.validations
+        .cast<Validation?>()
+        .firstWhere((v) => !v!.isValid, orElse: () => null)
+        ?.message;
+
     return LazyStreamBuilder(
       streamFactory: () => MergeStream(
         [
@@ -27,6 +34,14 @@ class RadioButtonGroupRenderer extends FormElementRenderer<RadioButtonGroup> {
                 .where((c) => c.isVisible)
                 .map((choice) => renderer(choice, context))
                 .toList(),
+            if (errorText != null)
+              Text(
+                errorText,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodySmall!
+                    .copyWith(color: Theme.of(context).errorColor),
+              ),
           ],
         );
       },

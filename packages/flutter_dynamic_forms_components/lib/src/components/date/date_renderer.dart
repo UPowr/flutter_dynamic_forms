@@ -1,3 +1,4 @@
+import 'package:dynamic_forms/dynamic_forms.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_dynamic_forms/flutter_dynamic_forms.dart';
@@ -19,12 +20,18 @@ class ReactiveDateRenderer extends FormElementRenderer<model.Date> {
         var value = element.value;
         final DateTime time = value != null ? value : element.initialDate;
 
+        var errorText = element.validations
+            .cast<Validation?>()
+            .firstWhere((v) => !v!.isValid, orElse: () => null)
+            ?.message;
+
         return Center(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               decoration: InputDecoration(
                 hintText: format.format(time),
+                errorText: errorText,
               ),
               onTap: () async {
                 FocusScope.of(context).requestFocus(FocusNode());

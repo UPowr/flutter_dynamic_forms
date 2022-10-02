@@ -26,7 +26,12 @@ abstract class FormElementParser<TFormElement extends FormElement>
     formElement
       ..id = id
       ..isVisibleProperty = parserNode.getIsVisibleProperty()
-      ..parentProperty = parserNode.getParentProperty(parent as FormElement?);
+      ..parentProperty = parserNode.getParentProperty(parent as FormElement?)
+      ..validationsProperty = parserNode.getChildrenProperty<Validation>(
+          parent: formElement,
+          parser: parser,
+          childrenPropertyName: 'validations',
+          isContentProperty: false);
   }
 
   static final identifierRegexp = RegExp(r'^[a-zA-Z_][a-zA-Z0-9_]*$');

@@ -32,11 +32,6 @@ class TextFieldParser<TTextField extends TextField>
         defaultValue: ParserNode.defaultString,
         isImmutable: true,
       )
-      ..validationsProperty = parserNode.getChildrenProperty<Validation>(
-          parent: textField,
-          parser: parser,
-          childrenPropertyName: 'validations',
-          isContentProperty: false)
       ..valueProperty = parserNode.getStringProperty(
         'value',
         defaultValue: ParserNode.defaultString,

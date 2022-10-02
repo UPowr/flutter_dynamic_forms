@@ -5,3 +5,5 @@ properties:
   isVisible:
     type: bool
     default: true  
+  validations:
+    type: validation[]
