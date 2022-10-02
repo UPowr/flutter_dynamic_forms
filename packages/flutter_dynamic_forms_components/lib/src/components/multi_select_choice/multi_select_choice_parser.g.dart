@@ -30,6 +30,11 @@ class MultiSelectChoiceParser<TMultiSelectChoice extends MultiSelectChoice>
         'label',
         defaultValue: ParserNode.defaultString,
         isImmutable: true,
+      )
+      ..valueProperty = parserNode.getStringProperty(
+        'value',
+        defaultValue: ParserNode.defaultString,
+        isImmutable: true,
       );
   }
 }

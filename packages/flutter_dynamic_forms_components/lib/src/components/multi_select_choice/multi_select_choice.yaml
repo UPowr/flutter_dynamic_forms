@@ -3,6 +3,8 @@ parentType: formElement
 properties:
   label:
     type: string
+  value:
+    type: string    
   isSelected:
     type: bool
     default: false

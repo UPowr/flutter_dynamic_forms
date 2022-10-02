@@ -7,6 +7,7 @@ import 'package:dynamic_forms/dynamic_forms.dart';
 class MultiSelectChoice extends FormElement {
   static const String isSelectedPropertyName = 'isSelected';
   static const String labelPropertyName = 'label';
+  static const String valuePropertyName = 'value';
 
   Property<bool> get isSelectedProperty => properties[isSelectedPropertyName] as Property<bool>;
   set isSelectedProperty(Property<bool> value) =>
@@ -21,6 +22,13 @@ class MultiSelectChoice extends FormElement {
   String get label =>
       labelProperty.value;
   Stream<String> get labelChanged => labelProperty.valueChanged;
+
+  Property<String> get valueProperty => properties[valuePropertyName] as Property<String>;
+  set valueProperty(Property<String> value) =>
+      registerProperty(valuePropertyName, value);
+  String get value =>
+      valueProperty.value;
+  Stream<String> get valueChanged => valueProperty.valueChanged;
 
   @override
   FormElement getInstance() {
