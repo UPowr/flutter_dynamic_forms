@@ -1,4 +1,4 @@
-import 'package:flutter_dynamic_forms/flutter_dynamic_forms.dart';
+import 'package:flutter_dynamic_forms/flutter_dynamic_forms_noflutter.dart';
 
 class LoadFormEvent extends FormElementEvent {
   final int formNumber;
