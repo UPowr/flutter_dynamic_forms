@@ -40,7 +40,7 @@ class RadioButtonGroupRenderer extends FormElementRenderer<RadioButtonGroup> {
                 style: Theme.of(context)
                     .textTheme
                     .bodySmall!
-                    .copyWith(color: Theme.of(context).errorColor),
+                    .copyWith(color: Theme.of(context).colorScheme.error),
               ),
           ],
         );
