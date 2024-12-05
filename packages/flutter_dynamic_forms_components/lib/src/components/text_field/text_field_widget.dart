@@ -54,11 +54,9 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextField(
-        style: Theme.of(context).textTheme.labelMedium,
         decoration: InputDecoration(
             labelText: widget.label,
             errorText: widget.errorText,
-            labelStyle: Theme.of(context).textTheme.labelSmall),
         keyboardType: getTextInputType(widget.textInputType),
         controller: _controller,
       ),
